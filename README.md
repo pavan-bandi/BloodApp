@@ -67,21 +67,21 @@ Follow these instructions to set up the project on your local machine.
 
 ## Installation
 
-    1. Clone the repository
-    2. Navigate to the project directory
-    3. Import the project into your favorite Integrated Development Environment (IDE).
-    4. Configure the MySQL database connection in the application.
-    5. Application Properties file located in the src/main/resources directory. 
-    6. Provide the necessary credentials, database URL, and other configuration details.
-    7. Build the project using Maven
-    8. Run the application
-    9. Access the application in your web browser at http://localhost:8080.
+1. Clone the repository
+2. Navigate to the project directory
+3. Import the project into your favorite Integrated Development Environment (IDE).
+4. Configure the MySQL database connection in the application.
+5. Application Properties file located in the src/main/resources directory. 
+6. Provide the necessary credentials, database URL, and other configuration details.
+7. Build the project using Maven
+8. Run the application
+9. Access the application in your web browser at http://localhost:8080.
 
 # Contributing
 We welcome contributions from the community to help improve the Blood Availability Application. If you would like to contribute, please follow the guidelines below.
 
 ## Contributor Guidelines
-* Fork the repository and create your branch from the main branch.
+* Fork the repository and **create a branch specific to the issue** from the main branch.
 * Ensure your code follows the project's code style.
 * Provide clear and concise commit messages and pull request descriptions.
 * When adding new features, write tests to validate your changes.
