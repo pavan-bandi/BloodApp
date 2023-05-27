@@ -1,7 +1,11 @@
 package com.cs.bloodapp.hospitals;
 
+import com.cs.bloodapp.blood.Bloody;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -10,7 +14,8 @@ public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Hid")
-    private Long id;
+    private Long hid;
+
 
     @Column(name = "HName", length = 40)
     private String name;
@@ -33,6 +38,11 @@ public class Hospital {
     @Column(name = "Pincode", length = 6)
     private String pincode;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "MY_USER_ID")
+    @JsonManagedReference
+    private Set<Bloody> bankAccounts;
+
     // Constructors, getters, and setters
 
     public Hospital() {
@@ -52,11 +62,11 @@ public class Hospital {
     // Getters and Setters
 
     public Long getId() {
-        return id;
+        return hid;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.hid = id;
     }
 
     public String getName() {

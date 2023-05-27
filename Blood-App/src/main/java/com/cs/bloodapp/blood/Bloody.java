@@ -1,16 +1,14 @@
 package com.cs.bloodapp.blood;
 
-import jakarta.persistence.*;
+import com.cs.bloodapp.hospitals.Hospital;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "blood")
-public class bloody {
+@Table(name = "Blood")
+public class Bloody {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name = "Hid")
     private Long hid;
 
@@ -18,25 +16,32 @@ public class bloody {
     private Long bid;
 
     @Column(name = "Quantity")
-    private Integer quantity;
+    private int quantity;
+
+    // Foreign key relationship with Hospital entity
+    @ManyToOne
+    @JoinColumn(name = "Hid", referencedColumnName = "hid", insertable = false, updatable = false)
+    private Hospital hospital;
 
     // Constructors, getters, and setters
 
-    public bloody() {
+    public Bloody() {
     }
 
-    public bloody(Long hid, Long bid, Integer quantity) {
+    public Bloody(Long hid, Long bid, int quantity) {
         this.hid = hid;
         this.bid = bid;
         this.quantity = quantity;
     }
 
+    // Getters and Setters
+
     public Long getId() {
-        return id;
+        return bid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long bid) {
+        this.bid = bid;
     }
 
     public Long getHid() {
@@ -55,11 +60,19 @@ public class bloody {
         this.bid = bid;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
     }
 }
