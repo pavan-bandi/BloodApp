@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+
 import {
   Button,
   Container,
@@ -55,7 +56,7 @@ function App({ hospitalAddresses }) {
 
             // Attach a click event listener to calculate and display distance
             marker.addListener('click', () => {
-              calculateDistance(location); // Calculate distance from user's location to hospital
+              calculateDistance(location);
             });
 
             markers.push(marker);
@@ -91,10 +92,10 @@ function App({ hospitalAddresses }) {
           // Set the map center to the user's location
           map.setCenter(userLocation);
 
-          // Calculate distance from user's location to the first hospital address
-          if (hospitalAddresses.length > 0) {
-            calculateDistance(hospitalAddresses[0].location);
-          }
+          // Calculate distance from user's location to all hospital addresses
+          hospitalAddresses.forEach((address) => {
+            calculateDistance(address);
+          });
         });
       }
     }
@@ -114,8 +115,24 @@ function App({ hospitalAddresses }) {
       travelMode: window.google.maps.TravelMode.DRIVING,
     });
 
-    // Display the calculated path on the map
-    setDirectionsResponse(results);
+    // Create a polylineOptions object to style the route line
+    const polylineOptions = {
+      strokeColor: 'blue', // Change the color as desired
+      strokeWeight: 5,    // Change the weight to make it thicker
+    };
+
+    // Display the calculated path on the map with custom styles
+    setDirectionsResponse({
+      ...results,
+      routes: results.routes.map((route) => ({
+        ...route,
+        overview_path: route.overview_path,
+        overview_polyline: route.overview_polyline,
+        bounds: route.bounds,
+        legs: route.legs,
+        polylineOptions: polylineOptions,
+      })),
+    });
 
     // Set the distance and duration in the state
     setDistance(results.routes[0].legs[0].distance.text);
